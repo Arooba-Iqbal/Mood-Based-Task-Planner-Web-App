@@ -13,6 +13,7 @@ export const createTask = async (req, res) => {
 
   const task = await Task.create({ title, description, dueDate });
   return res.status(201).json(task);
+  
 };
 
 export const updateTask = async (req, res) => {

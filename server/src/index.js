@@ -5,6 +5,8 @@ import connectDb from "./config/db.js";
 import moodRoutes from "./routes/moodRoutes.js";
 import reportRoutes from "./routes/reportRoutes.js";
 import taskRoutes from "./routes/taskRoutes.js";
+import authRoutes from "./routes/authRoutes.js";
+
 
 dotenv.config();
 connectDb();
@@ -31,3 +33,5 @@ app.use((error, _req, res, _next) => {
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
+app.use("/api/auth", authRoutes);
+

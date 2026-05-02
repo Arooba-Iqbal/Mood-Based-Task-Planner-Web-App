@@ -1,25 +1,45 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import api from "../../services/api";
+import { fetchDashboard } from "../mood/moodSlice";
+import axios from "axios";
 
 export const fetchTasks = createAsyncThunk("tasks/fetchTasks", async () => {
   const response = await api.get("/tasks");
   return response.data;
 });
 
-export const addTask = createAsyncThunk("tasks/addTask", async (payload) => {
-  const response = await api.post("/tasks", payload);
-  return response.data;
-});
+export const addTask = createAsyncThunk(
+  "tasks/addTask",
+  async (payload, { dispatch }) => {
+    const res = await api.post("/tasks", payload); // ✔ use SAME api
 
-export const updateTask = createAsyncThunk("tasks/updateTask", async ({ id, data }) => {
-  const response = await api.put(`/tasks/${id}`, data);
-  return response.data;
-});
+    dispatch(fetchDashboard());
 
-export const deleteTask = createAsyncThunk("tasks/deleteTask", async (id) => {
-  await api.delete(`/tasks/${id}`);
-  return id;
-});
+    return res.data;
+  }
+);
+
+export const updateTask = createAsyncThunk(
+  "tasks/updateTask",
+  async ({ id, data }, { dispatch }) => {
+    const res = await api.put(`/tasks/${id}`, data);
+
+    dispatch(fetchDashboard());
+
+    return res.data;
+  }
+);
+
+export const deleteTask = createAsyncThunk(
+  "tasks/deleteTask",
+  async (id, { dispatch }) => {
+    await api.delete(`/tasks/${id}`);
+
+    dispatch(fetchDashboard());
+
+    return id;
+  }
+);
 
 const taskSlice = createSlice({
   name: "tasks",
