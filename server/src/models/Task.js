@@ -2,22 +2,10 @@ import mongoose from "mongoose";
 
 const taskSchema = new mongoose.Schema(
   {
-    title: {
-      type: String,
-      required: true,
-      trim: true
-    },
-    description: {
-      type: String,
-      default: ""
-    },
-    completed: {
-      type: Boolean,
-      default: false
-    },
-    dueDate: {
-      type: Date
-    }
+    title: { type: String, required: true },
+    description: String,
+    dueDate: Date,
+    completed: { type: Boolean, default: false }  //  IMPORTANT
   },
   { timestamps: true }
 );
