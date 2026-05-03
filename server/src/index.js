@@ -24,6 +24,7 @@ app.get("/api/health", (_req, res) => {
 app.use("/api/tasks", taskRoutes);
 app.use("/api/moods", moodRoutes);
 app.use("/api/reports", reportRoutes);
+app.use("/api/auth", authRoutes);
 
 app.use((error, _req, res, _next) => {
   console.error(error);
@@ -33,5 +34,5 @@ app.use((error, _req, res, _next) => {
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
-app.use("/api/auth", authRoutes);
+
 
