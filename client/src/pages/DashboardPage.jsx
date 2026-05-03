@@ -1,5 +1,6 @@
 import Dashboard from "../components/Dashboard";
 import SuggestionCard from "../components/SuggestionCard";
+import api from "../services/api";
 
 const DashboardPage = ({ dashboard, suggestion }) => {
   return (

@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate, Route, Routes } from "react-router-dom";
 import "./styles.css";
+
 import LandingPage from "./pages/LandingPage";
 import {
   fetchDashboard,
@@ -90,9 +91,12 @@ const App = () => {
     dispatch(fetchSuggestion());
   };
 
-  const downloadWeeklyReport = () => {
-    window.open("http://localhost:5000/api/reports/weekly", "_blank");
-  };
+ const downloadWeeklyReport = () => {
+  window.open(
+    `${import.meta.env.VITE_API_URL}/api/reports/weekly`,
+    "_blank"
+  );
+};
 
   return (
     
